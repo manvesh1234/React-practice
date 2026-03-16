@@ -1,24 +1,24 @@
 import React, { useState } from 'react'
+import Men from './components/Men'
+import Women from './Women'
 
 const App = () => {
 
-  const [marks, setMarks] = useState([45,78,29,12,15,53,86])
+  const [gender, setGender] = useState('Male')
 
-  function graceStudent () {
-     const newMarks = marks.map(function (elem) {
-      return elem + 5
-    })
-    setMarks(newMarks)
+  const changeGender = () => {
+   setGender(gender === "Male" ? "Female" : "Male")
   }
-  
+
   return (
-    <div>
-      {marks.map(function(elem,idx){
-        return <h1 key={idx}>student {idx + 1} = {elem} ({elem>33?'PASS':'FAIL'})</h1>
-      })}
-      <button onClick={graceStudent} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-       Give Grace Marks
-      </button>
+    <div className='p-5 bg-black min-h-screen text-white'>
+      <h1 className="text-3xl">{gender}</h1>
+      <br />
+       <button onClick={changeGender} className="bg-green-500 text-white px-4 py-2 rounded">
+        Change Gender
+       </button>
+
+       {gender === 'Male'? <Men /> : <Women />}
     </div>
   )
 }
